@@ -47,5 +47,6 @@ def post_edit(request, pk):
 
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    post.delete()
+    post.active = False
+    post.save()
     return redirect('/')
