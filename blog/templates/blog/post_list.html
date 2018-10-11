@@ -5,12 +5,13 @@
         <div class="post">
             <!-- Post header -->
             <h1>
-                <a class="col-sm-4" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                <a class="col-sm-8" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
             </h1>
             <div class="date col-sm-4">{{ post.published_date }}</div>
             
             <!-- Post body -->
-            <p class="col-sm-8">{{ post.text|linebreaksbr }}</p>
+            <p>{{ post.text|linebreaksbr }}</p>
+            <div class="col-sm-10">{{ post.author }}</div>
             <form action="{% url 'post_delete' post.pk %}" method="post">
                 {% csrf_token %}
                 <input type="submit" value="Delete" />
