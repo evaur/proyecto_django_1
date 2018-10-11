@@ -98,3 +98,8 @@ def export_posts_xls(request):
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
 
     return response
+
+def import_posts_xls(request):
+    
+    
+    return request
