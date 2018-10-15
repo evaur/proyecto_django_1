@@ -1,13 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django import forms
 from .models import Post
 from .forms import PostForm
+from django.contrib.auth.models import User
 
 #Para el xlsx
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 import io
 import xlsxwriter
 from datetime import datetime
+import openpyxl
+
 
 # Create your views here.
 def post_list(request):
@@ -100,6 +104,40 @@ def export_posts_xls(request):
     return response
 
 def import_posts_xls(request):
+<<<<<<< Updated upstream
+    if request.method == "POST":
+        #form = PostForm(request.POST)
+        #print(form.is_valid())
+        excel_file = request.FILES['excel_file']
+        wb = openpyxl.load_workbook(excel_file)
+        ws = wb['Hoja1']
+        #llegir dades 
+        llista_models = []
+        for row in ws.rows:
+            
+            author=row[0].value
+            title=row[1].value
+            text=row[2].value
+            active=bool(row[3].value)
+            published_date=datetime.now()
+
+            #mirar si existe el usuario author
+            exist_user = User.objects.filter(username=author)
+           
+            if exist_user.exists():
+                user = User.objects.get(username=author)
+                objecte_post = Post(
+                    author=user, 
+                    title=title,
+                    text=text,
+                    active=active,
+                    published_date=published_date
+                )
+                llista_models.append(objecte_post)
+        Post.objects.bulk_create(llista_models)
+    return redirect('/')
+=======
     
     
     return request
+>>>>>>> Stashed changes
