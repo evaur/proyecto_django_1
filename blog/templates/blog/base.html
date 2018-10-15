@@ -9,8 +9,14 @@
     </head>
     <body>
         <div class="page-header">
-                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-                <h1><a href="/">Eva Blog</a></h1>
+            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <h1><a href="/">Eva Blog</a></h1>
+            <a href="{% url 'export_posts_xls' %}">Export all posts</a>
+            <form action="{% url 'import_posts_xls' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" title="Upload excel file" name="excel_file" style="border: 1px solid black; padding: 5px;" required="required">
+                <input type="submit" value="Cargar" style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+            </form>
         </div>
 
         <div class="content container">
