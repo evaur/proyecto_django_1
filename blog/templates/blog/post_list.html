@@ -5,17 +5,21 @@
         <div class="post">
             <!-- Post header -->
             <h1>
-                <a class="col-sm-8" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                <a class="col-sm-10" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
             </h1>
-            <div class="date col-sm-4"><span class="glyphicon glyphicon-calendar"></span> {{ post.published_date }}</div>
             
             <!-- Post body -->
             <p>{{ post.text|linebreaksbr }}</p>
-            <div class="col-sm-10"><span class="glyphicon glyphicon-user"></span> {{ post.author }}</div>
-            <form action="{% url 'post_delete' post.pk %}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="Delete" />
-            </form>
+            <hr style="border-top: 1px solid #d0c5c5;">
+
+            <!-- Post end -->
+            <div class="date">
+                <span class="glyphicon glyphicon-user"></span> {{ post.author }}
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-calendar"></span> {{ post.published_date }}
+            </div>
+
+            <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>           
         </div>
     {% endfor %}
 {% endblock %}
