@@ -15,7 +15,7 @@ import openpyxl
 
 # Create your views here.
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(active=True).order_by('published_date').reverse()
     # posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     # renderizará (construirá) nuestra plantilla blog/post_list.html
     return render(request, 'blog/post_list.html', {'posts': posts})
