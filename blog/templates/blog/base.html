@@ -9,23 +9,63 @@
     </head>
     <body>
         <div class="page-header">
-            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="" class="top-menu"><span class="glyphicon glyphicon-log-in"></span></a>
             <h1><a href="/">Eva Blog</a></h1>
-            <a href="{% url 'export_posts_xls' %}">Export all posts</a>
-            <form action="{% url 'import_posts_xls' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" title="Upload excel file" name="excel_file" style="border: 1px solid black; padding: 5px;" required="required">
-                <input type="submit" value="Cargar" style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
-            </form>
         </div>
 
-        <div class="content container">
-            <div class="row">
-                <div class="col-sm-8 post-wall">
-                    {% block content %}
-                    {% endblock %}
+        <div class="container main-content-area">
+            <div class="row side-pull-left">
+                <div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+                    <div class="well">
+                        <aside id="search-3" class="widget widget_search">
+                            <form role="search" id="searchform" action="" method="get" accept-charset="utf-8">
+                                <div class="input-group">
+                                    <input class="form-control search-query" id="searchbox" name="q" type="text" placeholder="Search..." >
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </aside>
+                        <hr style="border-top: 1px solid #d0c5c5;">
+                        <aside id="wpp-1">
+                            <h4 class="widget-title">Add New Post
+                                <a href="{% url 'post_new' %}">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </a>
+                            </h4>
+                        </aside>
+                        <aside id="wpp-3">
+                            <h4 class="widget-title">Export all posts
+                                <a href="{% url 'export_posts_xls' %}">
+                                    <span class="glyphicon glyphicon-export"></span>
+                                </a>
+                            </h4>
+                        </aside>
+                        <form action="{% url 'import_posts_xls' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" title="Upload excel file" name="excel_file" required="required">
+                            <input type="submit" value="Cargar" style="border: 1px solid; padding:5px; border-radius: 2px; cursor: pointer;">
+                            <span class="glyphicon glyphicon-import"></span>
+                        </form>
+                        <hr style="border-top: 1px solid #d0c5c5;">
+                        <aside id="wpp-2" class="widget popular-posts">
+                            <h3 class="widget-title">Most Visited Posts</h3>
+                            <ul class="wpp-list">
+
+                            </ul>
+                        </aside>
+                    </div>
+                </div><!-- #secondary -->
+                <div class="main-content-inner col-sm-12 col-md-8">
+                    <div id="primary" class="content-area">
+                        {% block content %}
+                        {% endblock %}
+                    </div><!-- #primary -->
                 </div>
-            </div>
+            </div><!-- close .row -->
         </div>
     </body>
 </html>
