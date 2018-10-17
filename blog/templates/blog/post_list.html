@@ -19,7 +19,7 @@
                 <span class="glyphicon glyphicon-calendar"></span> {{ post.published_date }}
             </div>
 
-            <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>           
+            <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
         </div>
     {% endfor %}
 {% endblock %}

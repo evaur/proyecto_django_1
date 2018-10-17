@@ -5,7 +5,13 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
     </head>
     <body>
         <div class="page-header">
@@ -31,25 +37,34 @@
                         </aside>
                         <hr style="border-top: 1px solid #d0c5c5;">
                         <aside id="wpp-1">
-                            <h4 class="widget-title">Add New Post
+                            <h4 class="widget-title">
                                 <a href="{% url 'post_new' %}">
                                     <span class="glyphicon glyphicon-plus"></span>
-                                </a>
+                                </a>Add New Post
                             </h4>
                         </aside>
                         <aside id="wpp-3">
-                            <h4 class="widget-title">Export all posts
+                            <h4 class="widget-title">
                                 <a href="{% url 'export_posts_xls' %}">
                                     <span class="glyphicon glyphicon-export"></span>
-                                </a>
+                                </a>Export all posts
                             </h4>
                         </aside>
-                        <form action="{% url 'import_posts_xls' %}" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <input type="file" title="Upload excel file" name="excel_file" required="required">
-                            <input type="submit" value="Cargar" style="border: 1px solid; padding:5px; border-radius: 2px; cursor: pointer;">
-                            <span class="glyphicon glyphicon-import"></span>
-                        </form>
+                        <aside id="wpp-4">
+                            <h4 class="widget-title">
+                                <a>
+                                    <span class="glyphicon glyphicon-import"></span>
+                                </a> Import posts file (xslx)
+                            </h4>
+                            <div class="collapse">
+                                <form action="{% url 'import_posts_xls' %}" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="file" title="Upload excel file" name="excel_file" required="required">
+                                    <input type="submit" value="Cargar" style="border: 1px solid; padding:5px; border-radius: 2px; cursor: pointer;">
+                                </form>
+                            </div>
+                        </aside>
+
                         <hr style="border-top: 1px solid #d0c5c5;">
                         <aside id="wpp-2" class="widget popular-posts">
                             <h3 class="widget-title">Most Visited Posts</h3>
@@ -67,5 +82,14 @@
                 </div>
             </div><!-- close .row -->
         </div>
+
+        <script>
+            $(document).ready(function(){
+                $(".glyphicon-import").click(function(){
+                    $(".collapse").collapse('toggle');
+                });
+            });
+        </script>
+
     </body>
 </html>

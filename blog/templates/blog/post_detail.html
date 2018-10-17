@@ -3,21 +3,16 @@
 {% block content %}
 <div class="post">
     <h1>{{ post.title }}</h1>
-    <div class="date">
-        
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-    </div>
     <p>{{ post.text|linebreaksbr }}</p>
     <hr style="border-top: 1px solid #d0c5c5;">
-    <div class="col-sm-12">
-        <div class="col-sm-8">
-            <span class="glyphicon glyphicon-user"></span> {{ post.author }}
-        </div>
-        <div class="date">
-            <span class="glyphicon glyphicon-calendar"></span> {{ post.published_date }}
-        </div>
+
+    <!-- Post end -->
+    <div class="date">
+        <span class="glyphicon glyphicon-user"></span> {{ post.author }}
+        &nbsp;&nbsp;
+        <span class="glyphicon glyphicon-calendar"></span> {{ post.published_date }}
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
     </div>
-    
+    <a class="btn btn-default" href="/">Atr&aacute;s</a>
 </div>
-<a class="btn btn-default" href="/">Atr&aacute;s</a>
 {% endblock %}
